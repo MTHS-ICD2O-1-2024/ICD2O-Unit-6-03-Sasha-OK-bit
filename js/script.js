@@ -22,6 +22,5 @@ async function getdata() {
 
     document.getElementById("answer1").innerHTML = "<p>" + weatherData + "</p>"
   }catch (error) {
-    console.error(error)
   }
 }
