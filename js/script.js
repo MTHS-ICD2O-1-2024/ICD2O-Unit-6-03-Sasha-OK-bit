@@ -13,14 +13,16 @@
     })
 }
 
-async function getdata() {
+async function getData() {
   try {
-    const resultJSON = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=fe1d80e1e103cff8c6afd190cad23fa5")
-    const jsonData = await resultJSON.json()
+    const infoJSON = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=fe1d80e1e103cff8c6afd190cad23fa5")
+    const kelvinTemp = await infoJSON.main[1]
+    const weatherImage = await infoJSON. weather[4]
     console.log(jsonData)
-    const weatherData= jsonData.data[0]
+    const celsiusTemp = kelvinTemp + 273.75
 
-    document.getElementById("answer1").innerHTML = "<p>" + weatherData + "</p>"
+    document.getElementById("answer1").innerHTML = "<p>" + celsiusTemp + "</p>"
+    document.getElementById("answer2").innerHTML = "<p>" + weatherImage + "</p>"
   }catch (error) {
   }
 }
