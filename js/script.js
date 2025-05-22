@@ -16,10 +16,11 @@
 async function getData() {
   try {
     const infoJSON = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=fe1d80e1e103cff8c6afd190cad23fa5")
-    const kelvinTemp = await infoJSON.main.temp[1]
-    const weatherImage = await infoJSON.weather.icon[4]
+    const JSONdata = await infoJSON.json()
+    const kelvinTemp = await JSONdata.main.temp
+    const weatherImage = await JSONdata.weather.icon
     console.log(jsonData)
-    const celsiusTemp = kelvinTemp + 273.75
+    const celsiusTemp = kelvinTemp - 273.75
 
     document.getElementById("answer1").innerHTML = "<p>" + celsiusTemp + "</p>"
     document.getElementById("answer2").innerHTML = "<p>" + weatherImage + "</p>"
