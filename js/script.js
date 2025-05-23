@@ -22,10 +22,10 @@ async function getData() {
     const kelvinTemp = JSONdata.main.temp;
     const weatherImage = JSONdata.weather[0].icon;
 
-    const iconUrl = "https://openweathermap.org/img/wn" + iconCode + "@2x.png";
+    const iconUrl = "https://openweathermap.org/img/wn" + weatherImage + "@2x.png";
     document.getElementById("answer2").src = iconUrl;
 
-    document.getElementById("answer1").innerHTML = (temp - 273.15).toFixed(0) + ""+ "C";
+    document.getElementById("answer1").innerHTML = (kelvinTemp - 273.15).toFixed(0) + ""+ "C";
   }catch (error) {
     console.log(error);
   }
