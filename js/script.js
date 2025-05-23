@@ -15,15 +15,18 @@
 
 async function getData() {
   try {
-    const infoJSON = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=fe1d80e1e103cff8c6afd190cad23fa5")
-    const JSONdata = await infoJSON.json()
-    const kelvinTemp = await JSONdata.main.temp
-    const weatherImage = await JSONdata.weather.icon
-    console.log(jsonData)
-    const celsiusTemp = kelvinTemp - 273.75
+    const url = "https://api.openweathermap.org/data/2.5/weather?lat=45.4211435&lon=-75.6900574&appid=fe1d80e1e103cff8c6afd190cad23fa5"
+    const infoJSON = await fetch(url);
+    const JSONdata = await infoJSON.json();
 
-    document.getElementById("answer1").innerHTML = "<p>" + celsiusTemp + "</p>"
-    document.getElementById("answer2").innerHTML = "<p>" + weatherImage + "</p>"
+    const kelvinTemp = JSONdata.main.temp;
+    const weatherImage = JSONdata.weather[0].icon;
+
+    const iconUrl = "https://openweathermap.org/img/wn" + iconCode + "@2x.png";
+    document.getElementById("answer2").src = iconUrl;
+
+    document.getElementById("answer1").innerHTML = (temp - 273.15).toFixed(0) + ""+ "C";
   }catch (error) {
+    console.log(error);
   }
 }
